@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://deuqp4ft4gnby"]
+
+[ext_resource type="Script" path="res://dungeon_generator.gd" id="1_c0jgu"]
+[ext_resource type="PackedScene" uid="uid://hkw82hgda6jm" path="res://character.tscn" id="11_3va28"]
+
+[node name="Dungeon Generator" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_c0jgu")
+
+[node name="character" parent="." instance=ExtResource("11_3va28")]
+
+[node name="Camera2D" type="Camera2D" parent="."]

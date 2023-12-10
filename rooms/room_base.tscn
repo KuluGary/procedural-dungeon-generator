@@ -1,0 +1,83 @@
+[gd_scene load_steps=9 format=3 uid="uid://5qbpbp1o5i4l"]
+
+[ext_resource type="Script" path="res://rooms/room_spawner.gd" id="1_wqrfy"]
+[ext_resource type="Texture2D" uid="uid://c0b7mjhwpsw6f" path="res://tileset/wall.png" id="2_da8g0"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rvsil"]
+texture = ExtResource("2_da8g0")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_uyuxa"]
+physics_layer_0/collision_layer = 1
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "Terrain 0"
+terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+sources/0 = SubResource("TileSetAtlasSource_rvsil")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_brw4g"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xnev6"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f5xwy"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x6im1"]
+size = Vector2(16, 16)
+
+[node name="Room" type="Node2D"]
+script = ExtResource("1_wqrfy")
+
+[node name="TileMap" type="TileMap" parent="."]
+y_sort_enabled = true
+tile_set = SubResource("TileSet_uyuxa")
+format = 2
+layer_0/y_sort_enabled = true
+layer_0/tile_data = PackedInt32Array(458753, 0, 0, 65548, 0, 0, 0, 0, 0, 65536, 0, 0, 131072, 0, 0, 196608, 0, 0, 262144, 0, 0, 327680, 0, 0, 393216, 0, 0, 458752, 0, 0, 1, 0, 0, 2, 0, 0, 458754, 0, 0, 3, 0, 0, 458755, 0, 0, 4, 0, 0, 458756, 0, 0, 5, 0, 0, 458757, 0, 0, 6, 0, 0, 458758, 0, 0, 7, 0, 0, 458759, 0, 0, 8, 0, 0, 458760, 0, 0, 9, 0, 0, 458761, 0, 0, 10, 0, 0, 458762, 0, 0, 11, 0, 0, 458763, 0, 0, 12, 0, 0, 131084, 0, 0, 196620, 0, 0, 262156, 0, 0, 327692, 0, 0, 393228, 0, 0, 458764, 0, 0)
+layer_1/name = ""
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = true
+layer_1/y_sort_origin = 0
+layer_1/z_index = 0
+layer_1/tile_data = PackedInt32Array()
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="EntranceDetectors" type="Node2D" parent="."]
+
+[node name="EntranceUp" type="Area2D" parent="EntranceDetectors"]
+position = Vector2(104, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EntranceDetectors/EntranceUp"]
+shape = SubResource("RectangleShape2D_brw4g")
+
+[node name="EntranceRight" type="Area2D" parent="EntranceDetectors"]
+position = Vector2(200, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EntranceDetectors/EntranceRight"]
+shape = SubResource("RectangleShape2D_xnev6")
+
+[node name="EntranceLeft" type="Area2D" parent="EntranceDetectors"]
+position = Vector2(8, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EntranceDetectors/EntranceLeft"]
+shape = SubResource("RectangleShape2D_f5xwy")
+
+[node name="EntranceDown" type="Area2D" parent="EntranceDetectors"]
+position = Vector2(104, 120)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EntranceDetectors/EntranceDown"]
+shape = SubResource("RectangleShape2D_x6im1")
+
+[node name="SpawnCenter" type="Marker2D" parent="."]
+position = Vector2(104, 64)
+
+[connection signal="body_entered" from="EntranceDetectors/EntranceUp" to="." method="_on_entrance_body_entered"]
+[connection signal="body_entered" from="EntranceDetectors/EntranceRight" to="." method="_on_entrance_body_entered"]
+[connection signal="body_entered" from="EntranceDetectors/EntranceLeft" to="." method="_on_entrance_body_entered"]
+[connection signal="body_entered" from="EntranceDetectors/EntranceDown" to="." method="_on_entrance_body_entered"]

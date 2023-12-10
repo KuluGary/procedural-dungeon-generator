@@ -1,0 +1,21 @@
+[gd_scene load_steps=12 format=3 uid="uid://deuqp4ft4gnby"]
+
+[ext_resource type="Script" path="res://dungeon_generator.gd" id="1_c0jgu"]
+[ext_resource type="PackedScene" uid="uid://5hrxudfqqm5g" path="res://rooms/room4.tscn" id="2_bl2es"]
+[ext_resource type="PackedScene" uid="uid://tjo2036gpkke" path="res://rooms/room8.tscn" id="2_tvumh"]
+[ext_resource type="PackedScene" uid="uid://dqd0wxwehxa5w" path="res://rooms/room2.tscn" id="3_0muxb"]
+[ext_resource type="PackedScene" uid="uid://c13u4y04shuym" path="res://rooms/room6.tscn" id="4_fveg0"]
+[ext_resource type="PackedScene" uid="uid://daum5a35hwhn" path="res://rooms/room9.tscn" id="4_uedw1"]
+[ext_resource type="PackedScene" uid="uid://chlebqrenje8d" path="res://rooms/room10.tscn" id="5_aeyb8"]
+[ext_resource type="PackedScene" uid="uid://dw1fka72goyag" path="res://rooms/room7.tscn" id="7_bn433"]
+[ext_resource type="PackedScene" uid="uid://2psqjscc4t0a" path="res://rooms/room3.tscn" id="9_dpqpn"]
+[ext_resource type="PackedScene" uid="uid://ci0hx7iiol1s4" path="res://rooms/room5.tscn" id="10_g532x"]
+[ext_resource type="PackedScene" uid="uid://doyga5ukhfj04" path="res://rooms/room1.tscn" id="11_d0k81"]
+
+[node name="Dungeon Generator" type="Node2D"]
+script = ExtResource("1_c0jgu")
+bottom_rooms = Array[PackedScene]([ExtResource("2_tvumh"), ExtResource("3_0muxb"), ExtResource("4_fveg0")])
+top_rooms = Array[PackedScene]([ExtResource("2_tvumh"), ExtResource("4_uedw1"), ExtResource("5_aeyb8"), ExtResource("7_bn433")])
+left_rooms = Array[PackedScene]([ExtResource("2_bl2es"), ExtResource("4_uedw1"), ExtResource("9_dpqpn")])
+right_rooms = Array[PackedScene]([ExtResource("2_bl2es"), ExtResource("5_aeyb8"), ExtResource("10_g532x"), ExtResource("4_fveg0")])
+initial_room = ExtResource("11_d0k81")
